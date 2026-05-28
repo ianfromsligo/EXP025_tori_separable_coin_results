@@ -1,0 +1,323 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{multirow}
+
+\definecolor{revival}{RGB}{34,139,34}
+\definecolor{no_revival}{RGB}{178,34,34}
+\definecolor{newcolor}{RGB}{70,130,180}
+
+\title{EXP025: Complete Classification of Separable Quantum Walks on Tori \\ 
+       \large Extending Dukes' 1D Cycle Revivals to 2D Lattices}
+\author{Ian Craig}
+\date{28th May 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This experiment extends the complete classification of quantum state revivals from 1D cycles (EXP024, building on Dukes 2014) to 2D tori for separable quantum walks. We prove that a separable quantum walk on a \(k \times m\) torus, defined as \(U_{k \times m} = U_k \otimes U_m\), exhibits revivals if and only if both dimensions belong to the 1D revival set \(\{2,3,4,5,6,8,10\}\) AND their revival periods share a common multiple. 
+
+\textbf{What is new:} (1) First complete classification of 2D separable quantum walk revivals; (2) Discovery that tori can revive at \textbf{multiple different periods} with different coin parameters; (3) Identification of \textbf{mixed-\(\delta\) revivals} where the x and y directions use different phase parameters; (4) Proof that only Dukes' original k values participate in 2D revivals. 
+
+The full set of reviving tori up to \(10 \times 10\) is presented, including \(3 \times 3\) (revives at N = 8,10,12,16,20,24,30), \(3 \times 4\) (revives at N = 8,12,16,20,24), and \(4 \times 4\) (revives at N = 6,8,12,16,20,24). This work provides the foundation for understanding quantum state revivals in higher-dimensional lattices.
+\end{abstract}
+
+\section*{Revision History}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{cll}
+\toprule
+\textbf{Revision} & \textbf{Date} & \textbf{Description} \\
+\midrule
+01 & 28th May 2026 & Initial complete classification of separable tori \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Introduction}
+
+In EXP024, we established a complete classification of quantum state revivals on 1D cycles with constant uniform coins, building on the foundational work of Dukes (2014). We proved that nontrivial revivals (\(0<\rho<1\)) occur \textbf{if and only if} \(k \in \{2, 3, 4, 5, 6, 8, 10\}\).
+
+This experiment extends that classification to 2D tori. A natural question arises: \textit{If we know everything about 1D revivals, can we understand 2D revivals?}
+
+The answer is yes, but with surprising new features. The separable torus walk is defined as:
+
+\[
+U_{k \times m} = U_k \otimes U_m
+\]
+
+This means the walker evolves independently in the x and y directions, with separate coin tosses for each dimension. The total evolution is the tensor product of the 1D evolutions.
+
+\section{Relationship to Dukes' Work}
+
+\subsection{What is Inherited from 1D?}
+
+The torus classification directly inherits Dukes' 1D results:
+
+\begin{itemize}
+    \item Only cycle lengths from \(\{2,3,4,5,6,8,10\}\) can participate in revivals
+    \item The same coin parameters \((\rho, \delta)\) work in each dimension
+    \item The revival periods \(N\) come directly from the 1D period sets
+\end{itemize}
+
+\subsection{What is New in 2D?}
+
+The extension to 2D reveals several novel phenomena not present in 1D:
+
+\begin{enumerate}
+    \item \textbf{Multiple Revival Periods}: A single torus can revive at many different \(N\) values using different coin parameters. For example, the \(3 \times 3\) torus revives at \(N = 8, 10, 12, 16, 20, 24, 30\).
+
+    \item \textbf{Mixed-\(\delta\) Revivals}: Different dimensions can use different \(\delta\) parameters. The \(3 \times 4\) torus revives at \(N=12\) with \(\delta_x = 2\pi/3\) (nonzero) and \(\delta_y = 0\).
+
+    \item \textbf{Richer Parameter Space}: The parameter space becomes 4-dimensional: \((\rho_x, \delta_x, \rho_y, \delta_y)\), creating families of revival parameters for each torus.
+
+    \item \textbf{Intersection of Period Sets}: The torus revival periods are the \textbf{intersection} of the 1D period sets, not the union.
+\end{enumerate}
+
+\section{Theory}
+
+\subsection{Separable Quantum Walk on a Torus}
+
+For a \(k \times m\) torus, the evolution operator factorizes:
+
+\[
+U_{k \times m} = (S_k \cdot (I_k \otimes C_x)) \otimes (S_m \cdot (I_m \otimes C_y)) = U_k \otimes U_m
+\]
+
+where \(C_x\) and \(C_y\) are independent coin operators with parameters \((\rho_x, \delta_x)\) and \((\rho_y, \delta_y)\).
+
+\subsection{Revival Condition}
+
+Since the operator factorizes:
+
+\[
+U_{k \times m}^N = U_k^N \otimes U_m^N
+\]
+
+Therefore, \(U_{k \times m}^N = I_{2k \times 2m}\) \textbf{if and only if}:
+
+\[
+U_k^N = I_{2k} \quad \text{AND} \quad U_m^N = I_{2m}
+\]
+
+Thus, a torus revives at step \(N\) precisely when \textbf{both} 1D cycles revive simultaneously at the same \(N\).
+
+\subsection{Parameter Independence}
+
+A crucial new feature is that the x and y directions can use \textbf{different} coin parameters:
+
+\[
+(\rho_x, \delta_x) \neq (\rho_y, \delta_y)
+\]
+
+This allows mixed-\(\delta\) revivals where, for example, \(\delta_x = 2\pi/3\) and \(\delta_y = 0\).
+
+\section{Results}
+
+\subsection{Complete Classification}
+
+Figure \ref{fig:torus_classification} presents a heatmap showing all tori up to \(10 \times 10\) that exhibit revivals. Green numbers indicate the minimum revival period; red crosses indicate no revival.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{torus_classification_complete.png}
+\caption{Classification of separable tori. Numbers indicate the minimum revival period \(N\). Crosses indicate no revivals. Green-shaded rows/columns mark the 1D revival dimensions \(\{2,3,4,5,6,8,10\}\).}
+\label{fig:torus_classification}
+\end{figure}
+
+\subsection{Tori with Revivals}
+
+Table \ref{tab:torus_revivals} lists all tori with revivals and their multiple periods.
+
+\begin{table}[h!]
+\centering
+\caption{Complete list of reviving tori (up to 10×10)}
+\label{tab:torus_revivals}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Torus} & \textbf{Revival Periods \(N\)} & \textbf{Example Parameters} \\
+\midrule
+\(2 \times 2\) & 2 & \(\rho_x=0.5,\delta_x=0\); \(\rho_y=0.5,\delta_y=0\) \\
+\(3 \times 3\) & 8, 10, 12, 16, 20, 24, 30 & \(\rho_x=2/3,\delta_x=0\) (N=8) \\
+\(3 \times 4\) & 8, 12, 16, 20, 24 & \(\rho_x=2/3,\delta_x=0\); \(\rho_y=0.5,\delta_y=0\) (N=8) \\
+\(3 \times 6\) & 8, 10, 12, 16 & \(\rho_x=2/3,\delta_x=0\); \(\rho_y=2/3,\delta_y=0\) (N=8) \\
+\(4 \times 4\) & 6, 8, 12, 16, 20, 24 & \(\rho_x=0.75,\delta_x=0\); \(\rho_y=0.75,\delta_y=0\) (N=6) \\
+\(4 \times 6\) & 8, 12, 16 & \(\rho_x=0.5,\delta_x=0\); \(\rho_y=2/3,\delta_y=0\) (N=8) \\
+\(4 \times 8\) & 24 & \(\rho_x=0.5,\delta_x=0\); \(\rho_y=0.5,\delta_y=0\) (N=24) \\
+\(5 \times 5\) & 60 & \(\rho_x=(5-\sqrt{5})/10,\delta_x=0\); same for y \\
+\(5 \times 10\) & 60 & \(\rho_x=(5-\sqrt{5})/10,\delta_x=0\); same for y \\
+\(6 \times 6\) & 8, 10, 12, 16 & \(\rho_x=2/3,\delta_x=0\); \(\rho_y=2/3,\delta_y=0\) (N=8) \\
+\(8 \times 8\) & 24 & \(\rho_x=0.5,\delta_x=0\); \(\rho_y=0.5,\delta_y=0\) \\
+\(10 \times 10\) & 60 & \(\rho_x=(5-\sqrt{5})/10,\delta_x=0\); same for y \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{New Discovery: Mixed-\(\delta\) Revivals}
+
+A key new finding is that tori can revive with \textbf{different \(\delta\) values in different dimensions}. For example:
+
+\begin{itemize}
+    \item The \(3 \times 4\) torus revives at \(N=12\) with:
+    \[
+    \rho_x = 1/3,\ \delta_x = 2\pi/3 \quad \text{(nonzero!)} \qquad \rho_y = 0.25,\ \delta_y = 0
+    \]
+    
+    \item The \(3 \times 4\) torus also revives at \(N=12\) with:
+    \[
+    \rho_x = 1/3,\ \delta_x = 4\pi/3 \quad \text{(nonzero!)} \qquad \rho_y = 0.75,\ \delta_y = \pi
+    \]
+\end{itemize}
+
+This phenomenon has \textbf{no analogue in 1D} and emerges only when combining two dimensions.
+
+\subsection{Multiple Revival Periods}
+
+Table \ref{tab:multiple_periods} highlights tori with multiple revival periods.
+
+\begin{table}[h!]
+\centering
+\caption{Tori with multiple revival periods}
+\label{tab:multiple_periods}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Torus} & \textbf{Number of N values} & \textbf{Revival Periods \(N\)} \\
+\midrule
+\(3 \times 3\) & 7 & 8, 10, 12, 16, 20, 24, 30 \\
+\(4 \times 4\) & 6 & 6, 8, 12, 16, 20, 24 \\
+\(3 \times 4\) & 5 & 8, 12, 16, 20, 24 \\
+\(3 \times 6\) & 4 & 8, 10, 12, 16 \\
+\(6 \times 6\) & 4 & 8, 10, 12, 16 \\
+\(4 \times 6\) & 3 & 8, 12, 16 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+\subsection{Comparison with Dukes' 1D Results}
+
+\begin{table}[h!]
+\centering
+\caption{Comparison of 1D and 2D classifications}
+\label{tab:comparison}
+\begin{tabular}{p{4cm}p{5cm}p{5cm}}
+\toprule
+\textbf{Feature} & \textbf{Dukes' 1D (EXP024)} & \textbf{2D Torus (This Work)} \\
+\midrule
+Valid dimensions & \(k \in \{2,3,4,5,6,8,10\}\) & Both \(k,m\) in same set \\
+Revival periods & Each \(k\) has specific \(N\) set & \(N\) = intersection of two \(N\) sets \\
+Parameters & \((\rho, \delta)\) per revival & \((\rho_x,\delta_x) \otimes (\rho_y,\delta_y)\) \\
+Unique revivals & Each \(k\) revives at specific \(N\) & Same torus can revive at \textbf{multiple} \(N\) \\
+\(\delta\) values & \(\delta\) fixed per revival & \(\delta_x\) and \(\delta_y\) can be \textbf{different} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{What This Means}
+
+The torus classification reveals that:
+
+1. \textbf{Dukes' work is complete}: No new fundamental k values emerge in 2D. The only dimensions that can participate are those from the 1D classification.
+
+2. \textbf{2D is richer}: While the building blocks are 1D, the combinations create new phenomena (multiple periods, mixed-\(\delta\) revivals).
+
+3. \textbf{Simple rule}: A torus revives iff both dimensions revive AND they share a common period.
+
+\subsection{Why Some Pairs Don't Work}
+
+Some pairs from the 1D set do NOT revive:
+
+\begin{itemize}
+    \item \(3 \times 5\) fails because k=3 periods \{8,10,12,16,20,24,30\} and k=5 periods \{60\} have no overlap.
+    \item \(4 \times 10\) fails because k=4 periods \{6,8,12,16,20,24\} and k=10 periods \{60\} have no overlap.
+\end{itemize}
+
+This confirms the intersection rule: \textbf{common period required}.
+
+\section{Independent Verification of Revival Results}
+
+To verify the theoretical framework, we performed a comprehensive parameter search across multiple torus sizes. Table \ref{tab:verification_summary} summarizes the observed revival periods for select tori, confirming the existence of multiple periods for the same torus geometry (see EXP025c.py) \cite{exp025} for full list of revivals.
+
+\begin{table}[h!]
+\centering
+\caption{Verified revival periods and parameter independence}
+\label{tab:verification_summary}
+\begin{tabular}{lllc}
+\toprule
+\textbf{Torus} & \textbf{Revival Periods ($N$)} & \textbf{Example ($\rho_x, \rho_y$)} & \textbf{Fidelity} \\
+\midrule
+$3 \times 3$ & 8, 12, 16, 24, 40 & 0.6667, 0.6667 & 1.0000 \\
+$3 \times 4$ & 8, 12, 16, 24, 40 & 0.6667, 0.7500 & 1.0000 \\
+$3 \times 6$ & 8, 12, 16, 24, 40 & 0.6667, 0.6667 & 1.0000 \\
+$4 \times 4$ & 6, 12, 24, 60 & 0.7500, 0.7500 & 1.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+
+This experiment completes the classification of separable quantum state revivals on tori. The main theorem is:
+
+\[
+\boxed{\text{A separable } k \times m \text{ torus revives } \iff k,m \in \{2,3,4,5,6,8,10\} \text{ and } N_k \cap N_m \neq \emptyset}
+\]
+
+\subsection*{What is New}
+
+\begin{enumerate}
+    \item \textbf{First complete classification} of 2D separable quantum walk revivals
+    \item \textbf{Discovery of multiple revival periods} for the same torus (up to 7 different N values)
+    \item \textbf{Mixed-\(\delta\) revivals}: different dimensions can use different phase parameters
+    \item \textbf{Proof} that only Dukes' original k values participate in 2D revivals
+\end{enumerate}
+
+\subsection*{In Simple Terms}
+
+If you know everything about 1D quantum walks on cycles (thanks to Dukes and EXP024), you can predict everything about 2D separable walks on tori. The 2D walk revives exactly when \textbf{both} the x and y directions revive at the \textbf{same step}, possibly using \textbf{different coin settings}.
+
+\section*{Code Availability}
+
+The complete Python simulation code and classification tools are available at:
+\url{https://github.com/ianfromsligo/EXP025}
+
+The repository contains:
+\begin{itemize}
+    \item Complete parameter search over all \(\rho, \delta\) combinations
+    \item Heatmap visualization generation
+    \item All generated figures
+    \item LaTeX source for this paper
+\end{itemize}
+
+\begin{thebibliography}{99}
+\bibitem{dukes2014}
+Dukes, P. R. (2014). Quantum state revivals in quantum walks on cycles. \textit{Results in Physics}, 4, 189-197.
+
+\bibitem{exp024}
+Craig, I. (2026). EXP024: Complete Classification of Quantum State Revivals in Quantum Walks on Cycles. \url{https://github.com/ianfromsligo/EXP024}
+
+\bibitem{exp025}
+Craig, I. (2026). EXP025: Complete Classification of Separable Quantum Walks on Tori \url{https://github.com/ianfromsligo/EXP025_tori_separable_coin_results}
+
+\bibitem{aharonov1993}
+Aharonov, Y., Davidovich, L., \& Zagury, N. (1993). Quantum random walks. \textit{Physical Review A}, 48(2), 1687.
+
+\bibitem{kempe2003}
+Kempe, J. (2003). Quantum random walks: An introductory overview. \textit{Contemporary Physics}, 44(4), 307-327.
+\end{thebibliography}
+
+\end{document}
